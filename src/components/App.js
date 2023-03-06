@@ -55,7 +55,7 @@ function App() {
             <button onClick={handleClick}>Incrementar</button>
           </form>
         </section>
-        <section className={`dummy error- ${numberOfErrors}`}>
+        <section className={`dummy error-${numberOfErrors}`}>
           <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
@@ -67,8 +67,8 @@ function App() {
           <span className="error-5 line"></span>
           <span className="error-4 line"></span>
           <span className="error-3 line"></span>
-          <span className={`error-${numberOfErrors} line`}></span>
-          <span className={`error-${numberOfErrors} line`}></span>
+          <span className="error-2 line"></span>
+          <span className="error-1 line"></span>
         </section>
       </main>
     </div>
