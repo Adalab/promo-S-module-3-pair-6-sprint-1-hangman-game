@@ -1,13 +1,27 @@
 import { useState } from 'react';
 import '../styles/App.scss';
 
+
 function App() {
   const [numberOfErrors, setNumberOfErrors] = useState(0);
+  const [lastLetter, setlastLetter] = useState("");
+  const [imvalidMsg, setImvalidMsg] = useState("");
 
   const handleClick = (event) => {
     event.preventDefault();
     setNumberOfErrors(numberOfErrors + 1);
   };
+  const handleLastLetter = (event) => {
+    if (event.target.value.search(/^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]*$/) === 0) {
+      setlastLetter(event.target.value);
+      setImvalidMsg("");
+      
+    } else {
+      setImvalidMsg("Introduce una letra válida");
+    }
+
+  }
+
   return (
     <div className="page">
       <header>
@@ -51,7 +65,10 @@ function App() {
               type="text"
               name="last-letter"
               id="last-letter"
+              value={lastLetter}
+              onChange={handleLastLetter}
             />
+            <p>{imvalidMsg}</p>
             <button onClick={handleClick}>Incrementar</button>
           </form>
         </section>
