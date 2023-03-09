@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import '../styles/App.scss';
 
-
 function App() {
   const [numberOfErrors, setNumberOfErrors] = useState(0);
-  const [lastLetter, setlastLetter] = useState("");
-  const [imvalidMsg, setImvalidMsg] = useState("");
+  const [lastLetter, setlastLetter] = useState('');
+  const [imvalidMsg, setImvalidMsg] = useState('');
+  const [word, setWord] = useState('katacroker');
+  const [userLetters, setUserLetters] = useState([]);
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -14,14 +15,19 @@ function App() {
   const handleLastLetter = (event) => {
     if (event.target.value.search(/^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]*$/) === 0) {
       setlastLetter(event.target.value);
-      setImvalidMsg("");
-      
+      setImvalidMsg('');
+      setUserLetters(lastLetter);
     } else {
-      setImvalidMsg("Introduce una letra válida");
+      setImvalidMsg('Introduce una letra válida');
     }
+  };
 
-  }
-
+  const renderSolutionLetters = () => {
+    const wordLetters = word.split('');
+    return wordLetters.map((eachLetter, index) => {
+      return <li className="letter" key={index}></li>;
+    });
+  };
   return (
     <div className="page">
       <header>
@@ -32,7 +38,8 @@ function App() {
           <div className="solution">
             <h2 className="title">Solución:</h2>
             <ul className="letters">
-              <li className="letter">k</li>
+              {renderSolutionLetters()}
+              {/* <li className="letter">k</li>
               <li className="letter">a</li>
               <li className="letter"></li>
               <li className="letter">a</li>
@@ -41,7 +48,7 @@ function App() {
               <li className="letter"></li>
               <li className="letter">k</li>
               <li className="letter">e</li>
-              <li className="letter">r</li>
+              <li className="letter">r</li> */}
             </ul>
           </div>
           <div className="error">
