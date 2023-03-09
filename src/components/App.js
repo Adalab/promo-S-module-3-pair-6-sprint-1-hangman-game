@@ -16,17 +16,22 @@ function App() {
     if (event.target.value.search(/^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]*$/) === 0) {
       setlastLetter(event.target.value);
       setImvalidMsg('');
-      setUserLetters(lastLetter);
+      setUserLetters([...userLetters,event.target.value]);
     } else {
       setImvalidMsg('Introduce una letra válida');
     }
   };
-
+  
   const renderSolutionLetters = () => {
     const wordLetters = word.split('');
     return wordLetters.map((eachLetter, index) => {
-      return <li className="letter" key={index}></li>;
+      if (userLetters.includes(eachLetter)) {
+        return <li className="letter" key={index}>{eachLetter}</li>;
+      } else {
+       return <li className="letter" key={index}></li>;
+      }
     });
+   
   };
   return (
     <div className="page">
